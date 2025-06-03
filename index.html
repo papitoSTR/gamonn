@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pesan Buat Kamu 💌</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    body {
+      background: linear-gradient(135deg, #fceabb, #f8b500);
+      font-family: 'Poppins', sans-serif;
+      max-width: 480px;
+      margin: 50px auto;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      text-align: center;
+      color: #d84315;
+      font-weight: 600;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      letter-spacing: 1.5px;
+      animation: fadeInDown 1s ease forwards;
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 25px;
+      color: #4e342e;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s ease forwards;
+      animation-delay: 0.5s;
+    }
+
+    p:nth-of-type(2) {
+      animation-delay: 1s;
+    }
+
+    p span.highlight {
+      font-weight: 600;
+      color: #bf360c;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s ease forwards;
+      animation-delay: 1.5s;
+    }
+
+    button {
+      padding: 12px 28px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+      transition: all 0.3s ease;
+      user-select: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    button::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 300%;
+      height: 300%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%) scale(0);
+      border-radius: 50%;
+      transition: transform 0.5s ease;
+      z-index: 0;
+    }
+
+    button:focus::after, button:hover::after {
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    button.accept {
+      background-color: #ff7043;
+      color: white;
+      box-shadow: 0 6px 12px rgba(255,112,67,0.4);
+    }
+
+    button.accept:hover {
+      background-color: #bf360c;
+      box-shadow: 0 8px 15px rgba(191, 54, 12, 0.6);
+    }
+
+    button.reject {
+      background-color: #b0bec5;
+      color: #37474f;
+      box-shadow: 0 6px 12px rgba(176,190,197,0.4);
+    }
+
+    button.reject:hover {
+      background-color: #78909c;
+      color: white;
+      box-shadow: 0 8px 15px rgba(120, 144, 156, 0.7);
+    }
+
+    .response-message {
+      margin-top: 30px;
+      font-size: 1.3rem;
+      font-weight: 600;
+      text-align: center;
+      color: #3e2723;
+      min-height: 50px;
+      user-select: none;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .response-message.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+      0% {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Hey, Kamu... 💌</h1>
+
+  <p style="animation-delay:0.5s;">
+    Aku sadar, kita pernah punya cerita yang nggak selalu mulus. Tapi aku masih <span class="highlight">ingin coba lagi</span>, dengan cara yang lebih santai dan jujur.
+  </p>
+
+  <p style="animation-delay:1s;">
+    Kalau kamu juga masih ada rasa, yuk kita mulai dari awal. Tapi kalau enggak, aku tetap menghargai kamu dan kenangan kita.
+  </p>
+
+  <div class="buttons" style="animation-delay:1.5s;">
+    <button class="accept" onclick="showResponse(true)">Aku mau coba lagi!</button>
+    <button class="reject" onclick="showResponse(false)">Maaf, aku nggak bisa</button>
+  </div>
+
+  <div class="response-message" id="responseMessage"></div>
+
+  <script>
+    function showResponse(accepted) {
+      const messageBox = document.getElementById('responseMessage');
+      if(accepted) {
+        messageBox.textContent = "Yay! Aku senang kamu mau coba lagi. Kita bisa mulai ngobrol kapan saja kamu siap 💖";
+        messageBox.style.color = "#d84315";
+      } else {
+        messageBox.textContent = "Terima kasih sudah jujur. Aku akan tetap menghargai dan mendoakan yang terbaik untuk kamu.";
+        messageBox.style.color = "#607d8b";
+      }
+      messageBox.classList.add('show');
+    }
+  </script>
+
+</body>
+</html>
